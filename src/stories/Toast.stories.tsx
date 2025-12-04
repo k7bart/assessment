@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Toast } from "./Toast";
+import { Toast } from "../components/Toast/Toast";
+
+import "../index.css";
 
 const meta = {
   title: "Assessment/Toast",
@@ -13,20 +15,20 @@ type Story = StoryObj<typeof meta>;
 export const Fade: Story = {
   args: {
     timeout: 1500,
-    transition: "fade",
+    transitionType: "fade",
   },
 };
 
 export const Slide: Story = {
   args: {
     timeout: 1500,
-    transition: "slide",
+    transitionType: "slide",
   },
 };
 
 export const SlideLong: Story = {
   args: {
-    timeout: 4500,
-    transition: "slide",
+    timeout: 5000,
+    transitionType: "slide",
   },
 };

@@ -1,7 +1,8 @@
 import React from "react";
 
+import { CloseIcon, Svg } from "../";
+
 import "./input.css";
-import { CloseIcon, Svg } from "../shared";
 
 export interface InputProps {
   type?: "text" | "number" | "password";

@@ -1,5 +1,16 @@
 # React Storybook Assessment
 
+## Setup
+
+Run the following commands:
+
+```bash
+npm i
+npm run storybook
+```
+
+## Components
+
 Stories are located in the `src/stories` directory. They showcase three components.
 
 ### `Input`
@@ -23,12 +34,3 @@ A sliding menu that supports nested items via expandable sections. It closes whe
 ![Sidebar](./screenshots/sidebar-closed.png)
 
 ![Sidebar](./screenshots/sidebar-open.png)
-
-## Setup
-
-Run the following commands:
-
-```bash
-npm i
-npm run storybook
-```

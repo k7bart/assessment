@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useArgs } from "storybook/preview-api";
 
-import { Sidebar } from "./Sidebar";
-import type { Item } from "./types";
+import { Sidebar } from "../components/Sidebar/Sidebar";
+import type { Item } from "../components/Sidebar/types";
+
+import "../index.css";
 
 const meta = {
   title: "Assessment/Sidebar",

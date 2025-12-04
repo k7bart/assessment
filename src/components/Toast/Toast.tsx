@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import { AnimatePresence, motion, type HTMLMotionProps } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  type HTMLMotionProps,
+  type Transition,
+} from "motion/react";
+
+import { CloseIcon } from "../";
 
 import "./toast.css";
-import { CloseIcon } from "../shared";
-
-export interface ToastProps {
-  timeout: number;
-  transition: "fade" | "slide";
-}
 
 const slideTransition: HTMLMotionProps<"div"> = {
   initial: { right: -300 },
@@ -21,7 +22,17 @@ const fadeTransition: HTMLMotionProps<"div"> = {
   exit: { opacity: 0 },
 };
 
-export const Toast: React.FC<ToastProps> = ({ timeout, transition }) => {
+const transition: Transition = {
+  duration: 1,
+  ease: [0.87, 0, 0.13, 1],
+};
+
+export interface ToastProps {
+  timeout: number;
+  transitionType: "fade" | "slide";
+}
+
+export const Toast: React.FC<ToastProps> = ({ timeout, transitionType }) => {
   const [isVisible, setIsVisible] = React.useState(true);
 
   useEffect(() => {
@@ -36,10 +47,9 @@ export const Toast: React.FC<ToastProps> = ({ timeout, transition }) => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          {...(transition === "fade" ? fadeTransition : slideTransition)}
-          transition={{ duration: 1, ease: [0.87, 0, 0.13, 1] }}
+          {...(transitionType === "fade" ? fadeTransition : slideTransition)}
+          transition={transition}
           className="toast"
-          onAnimationEnd={() => console.log("test")}
         >
           Important message!
           <button className="button button__square" onClick={cancel}>

@@ -1,10 +1,11 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion, type Transition } from "motion/react";
+import { useClickAway } from "@uidotdev/usehooks";
+
+import { Svg } from "../";
+import type { Item } from "./types";
 
 import "./sidebar.css";
-import { Svg } from "../shared";
-import { useClickAway } from "@uidotdev/usehooks";
-import type { Item } from "./types";
 
 interface SidebarItemProps {
   label: string;
@@ -42,13 +43,18 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ label, items }) => {
           className="nested"
           animate={{ height: isCollapsed ? 0 : "auto" }}
         >
-          {items.map(({ label, items }) => (
-            <SidebarItem label={label} items={items} />
+          {items.map((item) => (
+            <SidebarItem {...item} />
           ))}
         </motion.div>
       )}
     </div>
   );
+};
+
+const transition: Transition = {
+  duration: 0.5,
+  ease: [0.87, 0, 0.13, 1],
 };
 
 interface SidebarProps {
@@ -63,7 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ menu, isOpen, onToggle }) => {
   return (
     <>
       <button
-        className="button button__square sidebar-button"
+        className="button button__square sidebar-trigger"
         onClick={() => onToggle()}
       >
         <Svg>
@@ -76,7 +82,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ menu, isOpen, onToggle }) => {
         ref={ref}
         className="sidebar"
         animate={{ left: isOpen ? 0 : -320 }}
-        transition={{ duration: 0.5, ease: [0.87, 0, 0.13, 1] }}
+        transition={transition}
       >
         {menu.map((item) => (
           <SidebarItem {...item} />
