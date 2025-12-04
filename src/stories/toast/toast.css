@@ -1,0 +1,20 @@
+@import "../base.css";
+
+.toast {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+
+  display: flex;
+
+  padding: 0.5rem;
+  padding-left: 1rem;
+
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #bb80ff, #9780ff);
+}

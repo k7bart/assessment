@@ -1,0 +1,17 @@
+@import "../base.css";
+
+.input {
+  padding: 0 0.5rem;
+  width: 150px;
+  line-height: 2rem;
+}
+
+.input-wrapper {
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  background: #333;
+}
+.input-wrapper:has(> .input:focus) {
+  outline: 1px solid #bb80ff;
+}
