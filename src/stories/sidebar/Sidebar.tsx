@@ -4,20 +4,19 @@ import { motion } from "motion/react";
 import "./sidebar.css";
 import { Svg } from "../shared";
 import { useClickAway } from "@uidotdev/usehooks";
+import type { Item } from "./types";
 
 interface SidebarItemProps {
   label: string;
+  items?: Item[];
 }
 
-const SidebarItem: React.FC<React.PropsWithChildren<SidebarItemProps>> = ({
-  label,
-  children,
-}) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ label, items }) => {
   const [isCollapsed, setIsCollapsed] = React.useState(false);
 
   const toggle = () => setIsCollapsed((state) => !state);
 
-  const hasChilden = Array.isArray(children) && children.length;
+  const hasChilden = Array.isArray(items) && items.length;
 
   return (
     <div>
@@ -43,7 +42,9 @@ const SidebarItem: React.FC<React.PropsWithChildren<SidebarItemProps>> = ({
           className="nested"
           animate={{ height: isCollapsed ? 0 : "auto" }}
         >
-          {children}
+          {items.map(({ label, items }) => (
+            <SidebarItem label={label} items={items} />
+          ))}
         </motion.div>
       )}
     </div>
@@ -51,11 +52,12 @@ const SidebarItem: React.FC<React.PropsWithChildren<SidebarItemProps>> = ({
 };
 
 interface SidebarProps {
+  menu: Item[];
   isOpen: boolean;
   onToggle: (isOpen?: boolean) => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ menu, isOpen, onToggle }) => {
   const ref = useClickAway<HTMLDivElement>(() => onToggle(false));
 
   return (
@@ -76,19 +78,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
         animate={{ left: isOpen ? 0 : -320 }}
         transition={{ duration: 0.5, ease: [0.87, 0, 0.13, 1] }}
       >
-        <SidebarItem label="Nesting 0">
-          <SidebarItem label="Nesting 1" />
-          <SidebarItem label="Nesting 1">
-            <SidebarItem label="Nesting 2" />
-            <SidebarItem label="Nesting 2" />
-            <SidebarItem label="Nesting 2" />
-          </SidebarItem>
-          <SidebarItem label="Nesting 1" />
-        </SidebarItem>
-        <SidebarItem label="Nesting 0">
-          <SidebarItem label="Nesting 1" />
-          <SidebarItem label="Nesting 1" />
-        </SidebarItem>
+        {menu.map((item) => (
+          <SidebarItem {...item} />
+        ))}
       </motion.div>
     </>
   );

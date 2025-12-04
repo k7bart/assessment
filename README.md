@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# React Storybook Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Stories are located in the `src/stories` directory. They showcase three components.
 
-Currently, two official plugins are available:
+### `Input`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A flexible input field supporting text, password, and number. Password fields include a visibility toggle, and the clearable option adds a small reset button. Storybook shows variants for all input types, with and without the clear button.
 
-## React Compiler
+### `Toast`
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+A small notification that appears in the bottom-right corner, fades/slides in, and auto-dismisses after the set duration. Manual close is available. Storybook includes all toast types, duration examples, and configurations with a close button.
 
-## Expanding the ESLint configuration
+### `Sidebar`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+A sliding menu that supports nested items via expandable sections. It closes when the backdrop is clicked. Storybook demonstrates menus with one-level and multiple-level nesting, including open and closed states.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Run the following commands:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm i
+npm run storybook
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Screenshots
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Input
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+![Input](./screenshots/input.png)
+
+![Input](./screenshots/input-2.png)
+
+### Toast
+
+![Toast](./screenshots/toast.png)
+
+### Sidebar
+
+![Sidebar](./screenshots/sidebar-closed.png)
+
+![Sidebar](./screenshots/sidebar-open.png)
