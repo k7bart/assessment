@@ -27,7 +27,7 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div className="input-wrapper">
       {clearable && (
-        <button className="button" onClick={onClear}>
+        <button className="button button__square" onClick={onClear}>
           <CloseIcon />
         </button>
       )}
@@ -40,7 +40,10 @@ export const Input: React.FC<InputProps> = ({
       />
 
       {type === "password" && (
-        <button className="button" onClick={togglePasswordVisibility}>
+        <button
+          className="button button__square"
+          onClick={togglePasswordVisibility}
+        >
           <Svg>
             {localType === "password" ? (
               <>

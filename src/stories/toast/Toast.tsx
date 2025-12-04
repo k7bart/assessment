@@ -42,7 +42,7 @@ export const Toast: React.FC<ToastProps> = ({ timeout, transition }) => {
           onAnimationEnd={() => console.log("test")}
         >
           Important message!
-          <button className="button" onClick={cancel}>
+          <button className="button button__square" onClick={cancel}>
             <CloseIcon />
           </button>
         </motion.div>

@@ -1,1 +1,45 @@
 @import "../base.css";
+
+.sidebar-button {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+}
+
+.sidebar {
+  position: fixed;
+  left: -100%;
+  height: 100vh;
+  width: 320px;
+  padding: 2rem;
+  background-color: #333;
+  transition: 1;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 32px;
+  padding: 0 0.5rem;
+}
+
+.nested {
+  padding-left: 14px;
+  margin-left: 17px;
+  border-left: 1px solid #555;
+  overflow: hidden;
+}
+
+.chevron {
+  width: 20px;
+  height: 20px;
+}
+
+.offset {
+  width: 20px;
+}
